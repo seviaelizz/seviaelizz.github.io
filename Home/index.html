@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Simulasi Orbit Planet</title>
+    <style>
+        /* CSS untuk styling halaman */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #3a3f51;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            color: #3a3f51;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 10px;
+            overflow-x: auto;
+            border-left: 4px solid #3a3f51;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #d63384;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Materi Simulasi Orbit Planet</h1>
+    </header>
+
+    <!-- Konten Utama -->
+    <div class="container">
+        <h2>1. Dasar Hukum Gravitasi Newton</h2>
+        <p>Hukum gravitasi Newton menyatakan bahwa gaya tarik-menarik antara dua benda sebanding dengan hasil kali massa kedua benda dan berbanding terbalik dengan kuadrat jarak antara keduanya:</p>
+        <p>
+            <strong>Persamaan:</strong>
+            <br>
+            <code>F = G * (m1 * m2) / r^2</code>
+        </p>
+        <ul>
+            <li><strong>F:</strong> Gaya gravitasi antara dua benda</li>
+            <li><strong>G:</strong> Konstanta gravitasi universal (6.674 × 10<sup>-11</sup> Nm²/kg²)</li>
+            <li><strong>m1, m2:</strong> Massa kedua benda</li>
+            <li><strong>r:</strong> Jarak antara kedua benda</li>
+        </ul>
+
+        <h2>2. Konsep Simulasi Orbit</h2>
+        <p>Simulasi ini memodelkan pergerakan planet mengitari benda pusat (contohnya Matahari) menggunakan percepatan gravitasi.</p>
+
+        <h2>3. Metode Integrasi Euler</h2>
+        <p>Metode Euler digunakan untuk memperbarui posisi dan kecepatan planet berdasarkan persamaan diferensial.</p>
+        <ul>
+            <li><strong>Posisi:</strong> <code>x(t+dt) = x(t) + v(t) * dt</code></li>
+            <li><strong>Kecepatan:</strong> <code>v(t+dt) = v(t) + a(t) * dt</code></li>
+        </ul>
+        <p>Dengan percepatan <code>a</code> yang diperoleh dari hukum gravitasi:</p>
+        <p><code>a = -G * M / r^3 * r</code></p>
+
+        <h2>4. Langkah Simulasi</h2>
+        <ol>
+            <li>Inisialisasi posisi awal, kecepatan awal, dan parameter lainnya.</li>
+            <li>Hitung percepatan gravitasi pada setiap langkah waktu.</li>
+            <li>Perbarui kecepatan dan posisi menggunakan metode Euler.</li>
+        </ol>
+
+        <h2>5. Contoh Kode Pseudocode</h2>
+        <pre><code>
+# Parameter awal
+x = [x0, y0]
+v = [vx0, vy0]
+M = 1.989e30
+G = 6.674e-11
+dt = 1e5
+num_steps = 10000
+
+# Iterasi metode Euler
+for i in range(num_steps):
+    r = sqrt(x[0]*2 + x[1]*2)
+    a = -G * M / r**3
+    ax = a * x[0]
+    ay = a * x[1]
+    
+    # Perbarui kecepatan
+    v[0] += ax * dt
+    v[1] += ay * dt
+    
+    # Perbarui posisi
+    x[0] += v[0] * dt
+    x[1] += v[1] * dt
+    
+    print(f"Step {i}: Posisi = {x}")
+        </code></pre>
+
+        <h2>6. Visualisasi Orbit</h2>
+        <p>Dengan menggunakan pustaka seperti Matplotlib di Python, orbit planet dapat divisualisasikan sebagai lintasan elips jika parameter awal ditentukan dengan benar.</p>
+
+        <h2>7. Kelebihan dan Kekurangan Metode Euler</h2>
+        <ul>
+            <li><strong>Kelebihan:</strong> Sederhana dan mudah diimplementasikan.</li>
+            <li><strong>Kekurangan:</strong> Kurang akurat untuk langkah waktu yang besar dan bisa menjadi tidak stabil.</li>
+        </ul>
+        <p><em>Solusi: Gunakan metode seperti Runge-Kutta untuk hasil lebih stabil.</em></p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Simulasi Orbit Planet | Materi Hukum Gravitasi Newton</p>
+    </footer>
+</body>
+</html>
